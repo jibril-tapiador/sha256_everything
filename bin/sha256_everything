@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/sha256_everything'
+
+Sha256Everything::CLI.start
