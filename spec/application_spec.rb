@@ -19,12 +19,14 @@ RSpec.describe Sha256Everything::Application do
 
   it 'processes files, writes output, and shows progress' do
     options = { filename: output_file, directory: temp_dir, display_here: true }
-    expect { described_class.new(options).run }.to output(/File Hierarchy/).to_stdout
+    expect { described_class.new(options).run }.to output(/Hash file saved as/).to_stdout
+
     content = File.read(output_file)
-    expect(content).to include('SHA256 Hashes:')
+    expect(content).to include('File Hierarchy')
+    expect(content).to include('SHA256 Hash')
     expect(content).to include('file1.txt')
     expect(content).to include('file2.txt')
     expect(content).to include('subdir')
-    expect(content).to include('File Hierarchy:')
+    expect(content).to include('file3.txt')
   end
 end
