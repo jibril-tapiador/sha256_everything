@@ -1,17 +1,13 @@
 module Sha256Everything
   class OutputWriter
-    def initialize(filename, results, tree)
+    def initialize(filename, tree_str)
       @filename = filename
-      @results  = results
-      @tree     = tree
+      @tree_str = tree_str
     end
 
     def write
       File.open(@filename, 'w') do |f|
-        f.puts 'SHA256 Hashes:'
-        @results.each { |file, hash| f.puts "#{file}: #{hash}" }
-        f.puts "\nFile Hierarchy:"
-        f.puts @tree
+        f.puts @tree_str
       end
     end
   end
