@@ -11,7 +11,7 @@ module Sha256Everything
       # Set default options
       options = { filename: 'hashes.txt', display_here: false, directory: Dir.pwd }
       parser = OptionParser.new do |opts|
-        opts.banner = 'Usage: sha256-everything [options]'
+        opts.banner = 'Usage: sha256_everything [options]'
 
         opts.on('-fNAME', '--filename=NAME', 'Set the output file name') do |name|
           options[:filename] = name
