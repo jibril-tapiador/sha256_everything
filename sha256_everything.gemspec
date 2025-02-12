@@ -4,7 +4,7 @@ require_relative 'lib/sha256_everything/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'sha256_everything'
-  spec.version       = '0.1.0'
+  spec.version       = '1.0.0'
   spec.authors       = ['Jibril Tapiador']
   spec.email         = ['tapiador@jib.is']
 
