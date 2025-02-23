@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sha256_everything (0.1.0)
+    sha256_everything (1.0.0)
       ruby-progressbar (~> 1.10)
 
 GEM
