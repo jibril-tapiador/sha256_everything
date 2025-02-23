@@ -2,22 +2,29 @@ module Sha256Everything
   class FileCollector
     IGNORED_DIRECTORIES = ['.git'].freeze
 
+    attr_accessor :directory
+
     def initialize(directory)
       @directory = directory
     end
 
     def files
-      pattern = File.join(@directory, '**', '{*,.*}')
-      Dir.glob(pattern, File::FNM_DOTMATCH)
-         .reject { |f| ignore?(f) }
-         .select { |f| File.file?(f) }
+      Dir.glob(file_pattern, File::FNM_DOTMATCH)
+         .select { |file| valid_file?(file) }
     end
 
     private
 
-    def ignore?(file)
-      path_components = file.split(File::SEPARATOR)
-      (path_components & IGNORED_DIRECTORIES).any?
+    def file_pattern
+      File.join(@directory, '**', '{*,.*}')
+    end
+
+    def valid_file?(file)
+      File.file?(file) && !ignored_directory?(file)
+    end
+
+    def ignored_directory?(file)
+      file.split(File::SEPARATOR).any? { |component| IGNORED_DIRECTORIES.include?(component) }
     end
   end
 end
